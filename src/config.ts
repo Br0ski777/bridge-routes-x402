@@ -52,6 +52,57 @@ Do NOT use for same-chain swaps -- use dex_get_swap_quote instead. Do NOT use fo
         },
         required: ["fromChain", "toChain", "token", "amount"],
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "from_chain": {
+              "type": "string",
+              "description": "Source chain name"
+            },
+            "to_chain": {
+              "type": "string",
+              "description": "Destination chain name"
+            },
+            "token": {
+              "type": "string",
+              "description": "Token symbol"
+            },
+            "amount": {
+              "type": "string",
+              "description": "Amount to bridge"
+            },
+            "results": {
+              "type": "number",
+              "description": "Number of bridge routes found"
+            },
+            "routes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "bridge": {
+                    "type": "string"
+                  },
+                  "estimatedOutput": {
+                    "type": "string"
+                  },
+                  "estimatedFee": {
+                    "type": "string"
+                  },
+                  "estimatedTime": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "from_chain",
+            "to_chain",
+            "token",
+            "results"
+          ]
+        },
     },
   ],
 };
