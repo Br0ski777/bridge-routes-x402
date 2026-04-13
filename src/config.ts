@@ -3,7 +3,7 @@ import type { ApiConfig } from "./shared";
 export const API_CONFIG: ApiConfig = {
   name: "bridge-routes",
   slug: "bridge-routes",
-  description: "Best cross-chain bridge routes aggregated from LI.FI.",
+  description: "Best cross-chain bridge routes via LI.FI -- 60+ chains, 18+ bridges, fees and time compared.",
   version: "1.0.0",
   routes: [
     {
@@ -12,7 +12,20 @@ export const API_CONFIG: ApiConfig = {
       price: "$0.003",
       description: "Find the best cross-chain bridge route",
       toolName: "bridge_find_best_route",
-      toolDescription: "Use this when you need to bridge tokens cross-chain. Returns ranked routes with fee, time, and bridge provider across 60+ chains and 18+ bridges. Powered by LI.FI. Do NOT use for same-chain swaps — use dex_get_swap_quote. Do NOT use for gas prices — use gas_get_current_price.",
+      toolDescription: `Use this when you need to bridge tokens between different blockchains. Returns ranked bridge routes with fees and timing in JSON.
+
+1. routes: array of bridge options ranked by best value
+2. bridgeProvider: which bridge protocol (Stargate, Across, Hop, Connext, etc.)
+3. estimatedTime: expected bridge completion time in seconds
+4. fee: total bridging fee in USD
+5. amountReceived: expected output amount on destination chain
+6. steps: detailed step-by-step route (approve, bridge, swap if needed)
+
+Example output: {"routes":[{"bridgeProvider":"Stargate","estimatedTime":60,"fee":0.85,"amountReceived":"999.15","steps":["approve USDC","bridge via Stargate"]}],"fromChain":"Ethereum","toChain":"Base","token":"USDC"}
+
+Use this BEFORE moving assets cross-chain to find the cheapest and fastest bridge. Essential for multi-chain portfolio management.
+
+Do NOT use for same-chain swaps -- use dex_get_swap_quote instead. Do NOT use for gas prices -- use gas_get_current_price instead. Do NOT use for multi-chain gas comparison -- use crypto_estimate_gas instead.`,
       inputSchema: {
         type: "object",
         properties: {
