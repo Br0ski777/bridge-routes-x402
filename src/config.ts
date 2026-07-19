@@ -9,7 +9,7 @@ export const API_CONFIG: ApiConfig = {
     {
       method: "GET",
       path: "/api/route",
-      price: "$0.003",
+      price: "$0.008",
       description: "Find the best cross-chain bridge route",
       toolName: "bridge_find_best_route",
       toolDescription: `Use this when you need to bridge tokens between different blockchains. Returns ranked bridge routes with fees and timing in JSON.
@@ -107,7 +107,7 @@ Do NOT use for same-chain swaps -- use dex_get_swap_quote instead. Do NOT use fo
     {
       method: "POST",
       path: "/api/route",
-      price: "$0.003",
+      price: "$0.008",
       description: "Find the best cross-chain bridge route (POST variant)",
       toolName: "bridge_find_best_route",
       toolDescription: `Use this when you need to bridge tokens between different blockchains. Returns ranked bridge routes with fees and timing in JSON. POST variant of bridge_find_best_route -- same params passed as JSON body instead of query string.
